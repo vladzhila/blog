@@ -1,12 +1,23 @@
 ---
 import { Image } from 'astro:assets'
 import type { CollectionEntry } from 'astro:content'
+import type { MarkdownHeading } from 'astro'
 import SidebarLayout from './SidebarLayout.astro'
 import FormattedDate from '../components/FormattedDate.astro'
+import TableOfContents from '../components/TableOfContents.astro'
 
-type Props = CollectionEntry<'blog'>['data']
+type Props = CollectionEntry<'blog'>['data'] & {
+  headings?: MarkdownHeading[]
+}
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props
+const {
+  title,
+  description,
+  pubDate,
+  updatedDate,
+  heroImage,
+  headings = [],
+} = Astro.props
 ---
 
 <SidebarLayout title={title} description={description}>
@@ -36,6 +47,7 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props
       <slot />
     </div>
   </article>
+  {headings.length > 0 && <TableOfContents headings={headings} />}
 </SidebarLayout>
 
 <style>
@@ -81,4 +93,74 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props
   .post-header hr {
     margin: 1.5em 0;
   }
+
+  /* Heading anchor links */
+  .prose :global(h1),
+  .prose :global(h2),
+  .prose :global(h3),
+  .prose :global(h4),
+  .prose :global(h5),
+  .prose :global(h6) {
+    position: relative;
+    scroll-margin-top: 2rem;
+  }
+
+  .prose :global(h1:hover),
+  .prose :global(h2:hover),
+  .prose :global(h3:hover),
+  .prose :global(h4:hover),
+  .prose :global(h5:hover),
+  .prose :global(h6:hover) {
+    cursor: pointer;
+  }
+
+  .prose :global(h1::before),
+  .prose :global(h2::before),
+  .prose :global(h3::before),
+  .prose :global(h4::before),
+  .prose :global(h5::before),
+  .prose :global(h6::before) {
+    content: '#';
+    position: absolute;
+    left: -2.5rem;
+    color: var(--accent);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    font-weight: 400;
+  }
+
+  .prose :global(h1:hover::before),
+  .prose :global(h2:hover::before),
+  .prose :global(h3:hover::before),
+  .prose :global(h4:hover::before),
+  .prose :global(h5:hover::before),
+  .prose :global(h6:hover::before) {
+    opacity: 0.5;
+  }
 </style>
+
+<script>
+  // Make headings clickable to update anchor link
+  document.addEventListener('DOMContentLoaded', () => {
+    const headings = document.querySelectorAll(
+      '.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6'
+    )
+
+    headings.forEach((heading) => {
+      heading.addEventListener('click', () => {
+        const id = heading.getAttribute('id')
+        if (id) {
+          const url = new URL(window.location.href)
+          url.hash = id
+          window.history.pushState({}, '', url)
+
+          // Scroll to the heading smoothly
+          heading.scrollIntoView({ behavior: 'smooth', block: 'start' })
+
+          // Copy to clipboard silently
+          navigator.clipboard.writeText(url.toString())
+        }
+      })
+    })
+  })
+</script>

@@ -17,6 +17,8 @@ All commands use `bun` as the package manager:
 - `bun format` - Format code with Prettier
 - `bun astro check` - Type-check the project
 
+**IMPORTANT:** Do not run `bun dev` or start the development server automatically. The user will test manually.
+
 ## Architecture
 
 ### Content Collections

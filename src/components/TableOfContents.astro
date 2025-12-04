@@ -1,0 +1,188 @@
+---
+export interface Heading {
+  depth: number
+  slug: string
+  text: string
+}
+
+interface Props {
+  headings: Heading[]
+}
+
+const { headings } = Astro.props
+---
+
+<nav class="toc" aria-label="Table of Contents">
+  <div class="toc-header">Contents</div>
+  <ul class="toc-list">
+    {
+      headings.map((heading) => (
+        <li class={`toc-item toc-depth-${heading.depth}`}>
+          <a href={`#${heading.slug}`} class="toc-link">
+            {heading.text}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<style>
+  .toc {
+    position: fixed;
+    top: 6rem;
+    right: 2rem;
+    width: 240px;
+    max-height: calc(100vh - 8rem);
+    overflow-y: auto;
+    padding: 1rem;
+    background: white;
+    font-size: 0.875rem;
+  }
+
+  .toc-header {
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+  }
+
+  .toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .toc-item {
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .toc-depth-2 {
+    padding-left: 0;
+  }
+
+  .toc-depth-3 {
+    padding-left: 0.75rem;
+  }
+
+  .toc-depth-4 {
+    padding-left: 1.5rem;
+  }
+
+  .toc-link {
+    display: block;
+    color: rgb(var(--gray));
+    text-decoration: none;
+    padding: 0.25rem 0;
+    transition: color 0.2s ease;
+  }
+
+  .toc-link:hover {
+    color: var(--accent);
+  }
+
+  .toc-link.active {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  /* Hide on mobile */
+  @media (max-width: 1200px) {
+    .toc {
+      display: none;
+    }
+  }
+
+  /* Custom scrollbar for TOC */
+  .toc::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .toc::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .toc::-webkit-scrollbar-thumb {
+    background: rgb(var(--gray-light));
+    border-radius: 4px;
+  }
+
+  .toc::-webkit-scrollbar-thumb:hover {
+    background: rgb(var(--gray));
+  }
+</style>
+
+<script>
+  // Highlight the active heading in the TOC based on scroll position
+  const observerOptions = {
+    rootMargin: '-100px 0px -66%',
+    threshold: 1,
+  }
+
+  const headingElements = document.querySelectorAll(
+    '.prose h2, .prose h3, .prose h4'
+  )
+  const tocLinks = document.querySelectorAll('.toc-link')
+
+  let userClickedLink = false
+  let clickTimeout: ReturnType<typeof setTimeout> | null = null
+
+  // Set active link
+  function setActiveLink(id: string) {
+    tocLinks.forEach((link) => link.classList.remove('active'))
+    const activeLink = document.querySelector(`.toc-link[href="#${id}"]`)
+    activeLink?.classList.add('active')
+  }
+
+  // Handle intersection observer
+  const observer = new IntersectionObserver((entries) => {
+    // Don't update active state if user just clicked a link
+    if (userClickedLink) return
+
+    entries.forEach((entry) => {
+      const id = entry.target.getAttribute('id')
+      if (entry.isIntersecting && id) {
+        setActiveLink(id)
+      }
+    })
+  }, observerOptions)
+
+  headingElements.forEach((heading) => {
+    observer.observe(heading)
+  })
+
+  // Handle click events on TOC links
+  tocLinks.forEach((link) => {
+    link.addEventListener('click', (e) => {
+      const href = link.getAttribute('href')
+      if (href && href.startsWith('#')) {
+        const id = href.slice(1)
+
+        // Set flag to prevent observer from overriding
+        userClickedLink = true
+
+        // Clear any existing timeout
+        if (clickTimeout) {
+          clearTimeout(clickTimeout)
+        }
+
+        // Set active link immediately
+        setActiveLink(id)
+
+        // Re-enable observer after scroll animation completes
+        clickTimeout = setTimeout(() => {
+          userClickedLink = false
+        }, 1000)
+      }
+    })
+  })
+
+  // Set initial active link based on URL hash
+  if (window.location.hash) {
+    const id = window.location.hash.slice(1)
+    setActiveLink(id)
+  }
+</script>
