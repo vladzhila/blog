@@ -1,0 +1,96 @@
+---
+import { getCollection } from 'astro:content'
+import SidebarLayout from '../layouts/SidebarLayout.astro'
+import FormattedDate from '../components/FormattedDate.astro'
+import { SITE_TITLE } from '../consts'
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+)
+---
+
+<SidebarLayout title={`Writing | ${SITE_TITLE}`} description="Articles and thoughts">
+  <div class="writing-content">
+    <h1>Writing</h1>
+
+    <ul class="article-list">
+      {
+        posts.map((post) => (
+          <li class="article-item">
+            <a href={`/blog/${post.id}/`} class="article-title">
+              {post.data.title}
+            </a>
+            <span class="article-date">
+              <FormattedDate date={post.data.pubDate} />
+            </span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</SidebarLayout>
+
+<style>
+  .writing-content {
+    max-width: 800px;
+  }
+
+  h1 {
+    font-size: 1.5em;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    margin-bottom: 2em;
+  }
+
+  .article-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .article-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 1.5em 0;
+    border-bottom: 1px solid rgb(var(--gray-light));
+  }
+
+  .article-item:last-child {
+    border-bottom: none;
+  }
+
+  .article-title {
+    flex: 1;
+    font-size: 1.1em;
+    text-decoration: none;
+    color: rgb(var(--black));
+    border-bottom: 1px solid transparent;
+    transition: all 0.2s ease;
+  }
+
+  .article-title:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  .article-date {
+    color: rgb(var(--gray));
+    white-space: nowrap;
+    margin-left: 2em;
+    font-size: 0.95em;
+  }
+
+  @media (max-width: 768px) {
+    .article-item {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5em;
+    }
+
+    .article-date {
+      margin-left: 0;
+      font-size: 0.9em;
+    }
+  }
+</style>

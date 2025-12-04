@@ -1,20 +1,74 @@
 ---
-import BaseHead from '../components/BaseHead.astro'
-import Footer from '../components/Footer.astro'
-import Header from '../components/Header.astro'
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts'
+import SidebarLayout from '../layouts/SidebarLayout.astro'
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts'
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-  </head>
-  <body>
-    <Header />
-    <main>
-      <h1>Home page</h1>
-    </main>
-    <Footer />
-  </body>
-</html>
+<SidebarLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+  <div class="about-content">
+    <h1>MITCHELL HASHIMOTO</h1>
+
+    <p>
+      I'm a developer living in Los Angeles, CA. I previously co-founded <a
+        href="https://hashicorp.com">HashiCorp</a
+      >.
+    </p>
+
+    <p>
+      Today I spend most of my time working on <a href="https://ghostty.org"
+        >Ghostty</a
+      >, a new terminal emulator.
+    </p>
+
+    <p>
+      I was part of the initial engineering team behind most of our products,
+      such as <a href="https://www.vagrantup.com">Vagrant</a>, <a
+        href="https://www.packer.io">Packer</a
+      >, <a href="https://www.consul.io">Consul</a>, <a
+        href="https://www.terraform.io">Terraform</a
+      >, <a href="https://www.vaultproject.io">Vault</a>, <a
+        href="https://nomadproject.io">Nomad</a
+      >, <a href="https://www.waypointproject.io">Waypoint</a>, and more. I
+      don't work on any of those projects anymore. I was CEO for ~4 years, CTO
+      for ~5 years, an <a href="https://mitchellh.com/ic">individual contributor</a
+      > for ~2 years, and then <a href="https://mitchellh.com/leaving"
+        >left the company in 2023</a
+      >.
+    </p>
+
+    <p>
+      I fly airplanes. ✈️ I'm an FAA licensed private pilot with an instrument
+      rating (PPL ASEL IR). I currently fly a Cirrus SF50 Vision jet. I
+      frequently <a href="https://mitchellh.com/flying">share pictures of my flights</a
+      >.
+    </p>
+  </div>
+</SidebarLayout>
+
+<style>
+  .about-content {
+    max-width: 700px;
+  }
+
+  h1 {
+    font-size: 1.5em;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    margin-bottom: 2em;
+  }
+
+  p {
+    margin-bottom: 1.5em;
+    line-height: 1.8;
+  }
+
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease;
+  }
+
+  a:hover {
+    border-bottom-color: var(--accent);
+  }
+</style>

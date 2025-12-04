@@ -1,0 +1,106 @@
+---
+import { SITE_TITLE } from '../consts'
+import HeaderLink from './HeaderLink.astro'
+---
+
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <h2 class="site-title">
+      <a href="/">{SITE_TITLE}</a>
+    </h2>
+  </div>
+
+  <nav class="sidebar-nav">
+    <HeaderLink href="/">About</HeaderLink>
+    <HeaderLink href="/writing">Writing</HeaderLink>
+  </nav>
+
+  <footer class="sidebar-footer">
+    <p>&copy; {new Date().getFullYear()} {SITE_TITLE}</p>
+  </footer>
+</aside>
+
+<style>
+  .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 280px;
+    background: white;
+    border-right: 1px solid rgb(var(--gray-light));
+    display: flex;
+    flex-direction: column;
+    padding: 3em 2em;
+    z-index: 100;
+    box-sizing: border-box;
+  }
+
+  .sidebar-header {
+    margin-bottom: 3em;
+  }
+
+  .site-title {
+    margin: 0;
+    font-size: 1.5em;
+    font-weight: 700;
+  }
+
+  .site-title a {
+    text-decoration: none;
+    color: rgb(var(--black));
+  }
+
+  .sidebar-nav {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+  }
+
+  .sidebar-footer {
+    margin-top: auto;
+    padding-top: 2em;
+    border-top: 1px solid rgb(var(--gray-light));
+    font-size: 0.9em;
+    color: rgb(var(--gray));
+  }
+
+  .sidebar-footer p {
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .sidebar {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      height: auto;
+      flex-direction: row;
+      align-items: center;
+      padding: 1em 1.5em;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      border-right: none;
+      border-bottom: 1px solid rgb(var(--gray-light));
+    }
+
+    .sidebar-header {
+      margin-bottom: 0;
+    }
+
+    .site-title {
+      font-size: 1.2em;
+    }
+
+    .sidebar-nav {
+      flex-direction: row;
+      gap: 1.5em;
+      margin-left: auto;
+      margin-right: 2em;
+    }
+
+    .sidebar-footer {
+      display: none;
+    }
+  }
+</style>
