@@ -116,11 +116,6 @@ const { headings } = Astro.props
 
 <script>
   // Highlight the active heading in the TOC based on scroll position
-  const observerOptions = {
-    rootMargin: '-100px 0px -66%',
-    threshold: 1,
-  }
-
   const headingElements = document.querySelectorAll(
     '.prose h2, .prose h3, .prose h4'
   )
@@ -136,21 +131,46 @@ const { headings } = Astro.props
     activeLink?.classList.add('active')
   }
 
-  // Handle intersection observer
-  const observer = new IntersectionObserver((entries) => {
-    // Don't update active state if user just clicked a link
+  // Find and set the active heading based on scroll position
+  // Uses the same logic as clicking: the heading at/near the top of viewport is active
+  function updateActiveHeading() {
     if (userClickedLink) return
 
-    entries.forEach((entry) => {
-      const id = entry.target.getAttribute('id')
-      if (entry.isIntersecting && id) {
-        setActiveLink(id)
+    let activeHeading: string | null = null
+
+    headingElements.forEach((heading) => {
+      const id = heading.getAttribute('id')
+      if (!id) return
+
+      const rect = heading.getBoundingClientRect()
+      // Heading is active when its top has reached/passed the top of viewport
+      // (same position as when clicking a TOC link scrolls to it)
+      if (rect.top <= 100) {
+        activeHeading = id
       }
     })
-  }, observerOptions)
 
-  headingElements.forEach((heading) => {
-    observer.observe(heading)
+    if (activeHeading) {
+      setActiveLink(activeHeading)
+    } else if (headingElements.length > 0) {
+      // At top of page before any heading scrolls past - activate first heading
+      const firstId = headingElements[0].getAttribute('id')
+      if (firstId) {
+        setActiveLink(firstId)
+      }
+    }
+  }
+
+  // Throttled scroll handler using requestAnimationFrame
+  let ticking = false
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        updateActiveHeading()
+        ticking = false
+      })
+      ticking = true
+    }
   })
 
   // Handle click events on TOC links
@@ -160,7 +180,7 @@ const { headings } = Astro.props
       if (href && href.startsWith('#')) {
         const id = href.slice(1)
 
-        // Set flag to prevent observer from overriding
+        // Set flag to prevent scroll handler from overriding
         userClickedLink = true
 
         // Clear any existing timeout
@@ -171,7 +191,7 @@ const { headings } = Astro.props
         // Set active link immediately
         setActiveLink(id)
 
-        // Re-enable observer after scroll animation completes
+        // Re-enable scroll handler after scroll animation completes
         clickTimeout = setTimeout(() => {
           userClickedLink = false
         }, 1000)
@@ -179,9 +199,12 @@ const { headings } = Astro.props
     })
   })
 
-  // Set initial active link based on URL hash
+  // Set initial active link
   if (window.location.hash) {
     const id = window.location.hash.slice(1)
     setActiveLink(id)
+  } else {
+    // Run initial update on page load
+    updateActiveHeading()
   }
 </script>
