@@ -9,7 +9,10 @@ const posts = (await getCollection('blog')).sort(
 )
 ---
 
-<SidebarLayout title={`Writing | ${SITE_TITLE}`} description="Articles and thoughts">
+<SidebarLayout
+  title={`Writing | ${SITE_TITLE}`}
+  description="Articles and thoughts"
+>
   <div class="writing-content">
     <h1>Writing</h1>
 
@@ -32,7 +35,9 @@ const posts = (await getCollection('blog')).sort(
 
 <style>
   .writing-content {
-    max-width: 800px;
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
   }
 
   h1 {
@@ -53,11 +58,6 @@ const posts = (await getCollection('blog')).sort(
     justify-content: space-between;
     align-items: baseline;
     padding: 1.5em 0;
-    border-bottom: 1px solid rgb(var(--gray-light));
-  }
-
-  .article-item:last-child {
-    border-bottom: none;
   }
 
   .article-title {
@@ -65,13 +65,11 @@ const posts = (await getCollection('blog')).sort(
     font-size: 1.1em;
     text-decoration: none;
     color: rgb(var(--black));
-    border-bottom: 1px solid transparent;
     transition: all 0.2s ease;
   }
 
   .article-title:hover {
     color: var(--accent);
-    border-bottom-color: var(--accent);
   }
 
   .article-date {

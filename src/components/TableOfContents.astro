@@ -30,9 +30,8 @@ const { headings } = Astro.props
 <style>
   .toc {
     position: fixed;
-    top: 6rem;
-    right: 2rem;
-    width: 240px;
+    left: calc(50% + (700px / 2) + 4rem);
+    width: 300px;
     max-height: calc(100vh - 8rem);
     overflow-y: auto;
     padding: 1rem;
@@ -57,7 +56,7 @@ const { headings } = Astro.props
 
   .toc-item {
     margin: 0;
-    line-height: 1.4;
+    line-height: 1;
   }
 
   .toc-depth-2 {

@@ -5,41 +5,23 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts'
 
 <SidebarLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
   <div class="about-content">
-    <h1>MITCHELL HASHIMOTO</h1>
+    <h1>Vlad Zhila</h1>
 
     <p>
-      I'm a developer living in Los Angeles, CA. I previously co-founded <a
-        href="https://hashicorp.com">HashiCorp</a
-      >.
+      My name is Vlad, and I work as a Senior Software Engineer. My professional
+      background spans projects in healthcare, security, and web and mobile
+      systems, where I’ve been responsible for architecture, service
+      integration, performance optimization, and building scalable solutions.
     </p>
 
     <p>
-      Today I spend most of my time working on <a href="https://ghostty.org"
-        >Ghostty</a
-      >, a new terminal emulator.
-    </p>
-
-    <p>
-      I was part of the initial engineering team behind most of our products,
-      such as <a href="https://www.vagrantup.com">Vagrant</a>, <a
-        href="https://www.packer.io">Packer</a
-      >, <a href="https://www.consul.io">Consul</a>, <a
-        href="https://www.terraform.io">Terraform</a
-      >, <a href="https://www.vaultproject.io">Vault</a>, <a
-        href="https://nomadproject.io">Nomad</a
-      >, <a href="https://www.waypointproject.io">Waypoint</a>, and more. I
-      don't work on any of those projects anymore. I was CEO for ~4 years, CTO
-      for ~5 years, an <a href="https://mitchellh.com/ic">individual contributor</a
-      > for ~2 years, and then <a href="https://mitchellh.com/leaving"
-        >left the company in 2023</a
-      >.
-    </p>
-
-    <p>
-      I fly airplanes. ✈️ I'm an FAA licensed private pilot with an instrument
-      rating (PPL ASEL IR). I currently fly a Cirrus SF50 Vision jet. I
-      frequently <a href="https://mitchellh.com/flying">share pictures of my flights</a
-      >.
+      I have about 10 years of experience in IT and around 2 years of active
+      work with AI tools. I use them mainly for personal productivity: speeding
+      up coding, analyzing data, creating technical documentation, and exploring
+      new technologies. I became interested in AI because I wanted to increase
+      my work efficiency, and I saw how next-generation tools can change the way
+      we build software. The main AI-assistant tools I work with are Cursor,
+      Claude Code, and Codex.
     </p>
   </div>
 </SidebarLayout>
@@ -47,6 +29,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts'
 <style>
   .about-content {
     max-width: 700px;
+    margin: 0 auto;
   }
 
   h1 {
@@ -64,11 +47,6 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts'
   a {
     color: var(--accent);
     text-decoration: none;
-    border-bottom: 1px solid transparent;
     transition: border-color 0.2s ease;
-  }
-
-  a:hover {
-    border-bottom-color: var(--accent);
   }
 </style>

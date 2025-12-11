@@ -5,7 +5,7 @@
  */
 
 :root {
-  --accent: #674B7C;
+  --accent: #674b7c;
   --accent-dark: #4a3659;
   --black: 15, 18, 25;
   --gray: 96, 115, 159;
@@ -42,9 +42,12 @@ body {
   line-height: 1.8;
 }
 main {
-  margin-left: 280px;
-  padding: 4em 3em;
+  margin-left: 0;
+  padding: 3em 3em;
   min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
 h1,
 h2,
@@ -57,19 +60,22 @@ h6 {
   line-height: 1.2;
 }
 h1 {
-  font-size: 3.052em;
+  font-size: 2.5em;
 }
 h2 {
-  font-size: 2.441em;
+  font-size: 2em;
 }
 h3 {
-  font-size: 1.953em;
+  font-size: 1.8em;
 }
 h4 {
-  font-size: 1.563em;
+  font-size: 1.5em;
 }
 h5 {
   font-size: 1.25em;
+}
+h6 {
+  font-size: 1em;
 }
 strong,
 b {
@@ -85,7 +91,7 @@ p {
   margin-bottom: 1em;
 }
 .prose p {
-  margin-bottom: 2em;
+  margin-bottom: 1.25em;
 }
 textarea {
   width: 100%;
@@ -130,7 +136,6 @@ hr {
     font-size: 18px;
   }
   main {
-    margin-left: 0;
     padding: 1em;
   }
 }

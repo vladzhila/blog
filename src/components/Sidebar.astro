@@ -23,7 +23,7 @@ import HeaderLink from './HeaderLink.astro'
 <style>
   .sidebar {
     position: fixed;
-    left: 0;
+    left: calc(50% - (700px / 2) - 280px - 4rem);
     top: 0;
     bottom: 0;
     width: 280px;
@@ -31,6 +31,7 @@ import HeaderLink from './HeaderLink.astro'
     border-right: 1px solid rgb(var(--gray-light));
     display: flex;
     flex-direction: column;
+    justify-content: center;
     padding: 3em 2em;
     z-index: 100;
     box-sizing: border-box;
@@ -81,7 +82,6 @@ import HeaderLink from './HeaderLink.astro'
       padding: 1em 1.5em;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       border-right: none;
-      border-bottom: 1px solid rgb(var(--gray-light));
     }
 
     .sidebar-header {
