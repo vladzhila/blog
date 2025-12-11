@@ -54,6 +54,8 @@ const {
   .blog-post {
     max-width: 700px;
     margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .hero-image {
@@ -63,11 +65,40 @@ const {
   .hero-image img {
     display: block;
     width: 100%;
+    height: auto;
     border-radius: 8px;
   }
 
   .prose {
     color: rgb(var(--gray-dark));
+    width: 100%;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
+
+  /* Ensure content doesn't overflow on smaller screens */
+  @media (max-width: 768px) {
+    .blog-post {
+      max-width: 100%;
+      padding: 0;
+    }
+
+    .prose {
+      padding: 0;
+    }
+
+    .post-header h1 {
+      font-size: 2em;
+      word-wrap: break-word;
+    }
+  }
+
+  /* Very small mobile: Further reduce text size */
+  @media (max-width: 480px) {
+    .post-header h1 {
+      font-size: 1.75em;
+    }
   }
 
   .post-header {

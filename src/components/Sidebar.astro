@@ -71,21 +71,34 @@ import HeaderLink from './HeaderLink.astro'
     margin: 0;
   }
 
-  @media (max-width: 768px) {
+  /* Medium screens: Position sidebar on left without complex calc */
+  @media (max-width: 1380px) {
+    .sidebar {
+      left: 0;
+    }
+  }
+
+  /* Tablets and below: Convert to horizontal sticky header */
+  @media (max-width: 1200px) {
     .sidebar {
       position: sticky;
       top: 0;
+      left: 0;
       width: 100%;
       height: auto;
       flex-direction: row;
       align-items: center;
+      justify-content: flex-start;
       padding: 1em 1.5em;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       border-right: none;
+      border-bottom: 1px solid rgb(var(--gray-light));
+      gap: 2em;
     }
 
     .sidebar-header {
       margin-bottom: 0;
+      margin-right: 0;
     }
 
     .site-title {
@@ -95,12 +108,47 @@ import HeaderLink from './HeaderLink.astro'
     .sidebar-nav {
       flex-direction: row;
       gap: 1.5em;
-      margin-left: auto;
-      margin-right: 2em;
+      margin-left: 0;
+      margin-right: 0;
+      flex: 0;
     }
 
     .sidebar-footer {
       display: none;
+    }
+  }
+
+  /* Mobile: Smaller text and tighter spacing */
+  @media (max-width: 768px) {
+    .sidebar {
+      padding: 0.75em 1em;
+      gap: 1em;
+    }
+
+    .site-title {
+      font-size: 1.1em;
+      white-space: nowrap;
+    }
+
+    .sidebar-nav {
+      gap: 0.75em;
+    }
+  }
+
+  /* Very small mobile: Stack vertically if needed */
+  @media (max-width: 480px) {
+    .sidebar {
+      gap: 0.5em;
+      padding: 0.5em 0.75em;
+    }
+
+    .site-title {
+      font-size: 1em;
+    }
+
+    .sidebar-nav {
+      gap: 0.5em;
+      font-size: 0.9em;
     }
   }
 </style>
