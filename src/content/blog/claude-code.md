@@ -34,12 +34,15 @@ claude
 There are a few recommended setup steps to optimize your Claude Code experience:
 
 1. Run the `/terminal-setup` command to enable **Shift+Enter** for new lines, so you don’t need to use backslashes when entering multi-line prompts:
-   ![/terminal-setup](../../assets/claude-code/terminal-setup-cmd.png)
+
+![/terminal-setup](../../assets/claude-code/terminal-setup-cmd.png)
 
 2. Use the /config command to set your Claude Code preferences. The key change is to set the default model to “opus” or “sonnet” (Claude’s smartest models) instead of “haiku” (Claude’s fastest model).
-   ![/config](../../assets/claude-code/config-cmd.png)
+
+![/config](../../assets/claude-code/config-cmd.png)
 
 I also suggest turning on **Auto-connect to IDE** and setting it to true. This lets Claude Code automatically access the file you’re working on or the lines you’ve selected in your IDE.
+
 ![ide-integration](../../assets/claude-code/ide-integration.png)
 
 If you prefer using Claude Code directly inside your IDE instead of the terminal, you can follow these setup guides:
@@ -53,6 +56,7 @@ If you prefer using Claude Code directly inside your IDE instead of the terminal
 That said, the **terminal version** still provides the richest and most flexible experience, so it’s worth starting there before switching to an IDE workflow.
 
 Use the `/install-github-app` command to install the GitHub app. After installation, you can tag **@claude** directly in any GitHub issue or pull request to mention it.
+
 ![/install-github-app](../../assets/claude-code/install-github-app-cmd.png)
 
 ## Code-Based Q&A
@@ -104,22 +108,27 @@ Terminal interfaces are minimal by design, which can make features harder to dis
 
 - **Auto-accept edits** - automatically applies changes without asking for confirmation
 - **Plan mode** - outlines a step-by-step plan before making any changes, so you can review and approve it first
-  ![edit-plan-mode](../../assets/claude-code/edit-plan-mode.png)
+
+![edit-plan-mode](../../assets/claude-code/edit-plan-mode.png)
 
 `#` (Pound Sign) - Tell Claude Code to **remember** something. For example, if it's using a tool incorrectly, use `#` to provide correction, and it will learn from it and automatically update the guidance in `CLAUDE.md`.
+
 ![pound-sign](../../assets/claude-code/pound-sign.png)
 
 `!` **(Exclamation Mark)** - Switch to Bash mode to run a local command. The command and output go into the context window, making this ideal for long-running commands or any command you want visible to Claude Code on the next turn.
 
 For example, you can run your tests locally, see which ones fail, and then ask Claude Code to fix them. If you plan to run many commands, start with `!` to stay in shell mode. It’s like using your normal terminal - with an AI that can see and help with the results.
+
 ![exclamation-mark](../../assets/claude-code/exclamation-mark.png)
 
 `@` **(At Symbol)** - Mention files and folders to add them to context.
+
 ![at-symbol](../../assets/claude-code/at-symbol.png)
 
 **Escape** - Stop what Claude Code is doing at any time. It's always safe to hit Escape - it won't corrupt the session or cause problems. Use it to interrupt file edits, then provide different guidance, or to stop a suggested edit partway through if most lines look correct but one needs changing.
 
 **Escape Twice** or use the `/rewind` (checkpoint) command to jump back in the conversation history, edit an earlier prompt, and try a different approach.
+
 ![escape- ](../../assets/claude-code/escape-twice.png)
 
 **Ctrl+R** - Search through your prompt history.
@@ -129,6 +138,7 @@ For example, you can run your tests locally, see which ones fail, and then ask C
 More details here: https://code.claude.com/docs/en/interactive-mode#general-controls
 
 `?` **(Question mark)** - To see all shortcuts and experiment with them:
+
 ![question-mark](../../assets/claude-code/question-mark.png)
 
 # Resume Previous Sessions
@@ -159,6 +169,7 @@ Here’s you can check all [Tools available to Claude Code](https://code.claude.
 MCP Tools extend Claude Code with additional tools and integrations.
 
 For example, you can use **Context7 MCP** to give Claude direct access to the latest documentation for the libraries you use. Or you can use **Atlassian MCP** to let Claude retrieve Jira tickets or Confluence pages automatically without copying and pasting anything manually into the terminal. Or **Figma MCP** to let Claude inspect design files, extract them, and implement UI components that match your actual design specs.
+
 ![mcp-cmd](../../assets/claude-code/mcp-cmd.png)
 
 Popular MCP tools to use with Claude Code:
@@ -177,6 +188,7 @@ https://github.com/punkpeye/awesome-mcp-servers
 Use only the MCPs that are truly necessary. Remove unused ones, or keep them disabled by default and enable them only when your current task requires integration with an additional tool.
 
 You can check your current context usage anytime with the `/context` command.
+
 ![context-cmd](../../assets/claude-code/context-cmd.png)
 
 More details about “MCP” are here:
@@ -190,6 +202,7 @@ By default, Claude Code asks for permission before doing anything that could cha
 You can control which tools Claude is allowed to use by customizing its “allowlist”. This list lets you safely approve tools you trust, or even enable riskier ones that are easy to undo (like file edits or `git commit`).
 
 After starting Claude Code, you can run `/permissions` command to add or remove tools from the allowlist.
+
 ![permissions-cmd](../../assets/claude-code/permissions-cmd.png)
 
 Or edit configuration files manually. You can edit:
@@ -288,6 +301,7 @@ The most common places to put your `CLAUDE.md` file are:
   This makes the file apply to **all** your `claude` sessions on your computer, across every project. It’s your personal setup.
 
 When you run the `/init` command, Claude automatically generates a `CLAUDE.md` file for your project. It’s a useful starting point when you already have an existing codebase - Claude Code analyzes your project and creates the initial file for you. After that, you can manually fine-tune and adjust it as needed.
+
 ![init-cmd](../../assets/claude-code/init-cmd.png)
 
 More details about “Manage Claude's memory” are here:
@@ -328,6 +342,7 @@ For example, you might say: “Whenever I make code changes, always run the lint
 Claude will then save this rule in the correct memory file you choose and apply it in future interactions.
 
 When writing important instructions, use phrases like “IMPORTANT” or “YOU MUST” to help Claude follow critical rules more reliably.
+
 ![memorize-sign](../../assets/claude-code/memorize-sign.png)
 
 # Manage Chat Context Usage
@@ -341,11 +356,13 @@ When a conversation with Claude Code goes on for too long, it can become too lar
 Using `/compact` helps you stay on topic without losing key points. It replaces the full conversation history with a short, focused summary, so you can continue smoothly without memory issues.
 
 You can also enable **auto-compact** in your config to let Claude manage this automatically:
+
 ![auto-compact-option](../../assets/claude-code/auto-compact-option.png)
 
 **Important:** As I mentioned in the [**MCP Tools**](https://www.notion.so/Claude-Code-2a958a13ad50803384e2ecd8521216d6?pvs=21) section, it’s very important to keep an eye on your context usage. Many elements can quietly take up space in the context, such as the system prompt, tools, MCPs, `CLAUDE.md` files, your ongoing chat history. When there’s less free space left, the model’s performance can drop. **Use `/clear`, `/compact`, or start a new session regularly to get better results and reduce hallucinations.**
 
 You can use the `/context` command to see how much context is currently being used in your session:
+
 ![context-usage](../../assets/claude-code/context-usage.png)
 
 # Workflow Patterns
@@ -389,6 +406,7 @@ Extended thinking is disabled by default in Claude Code. You can enable it on-de
 **“think” < “think hard” < “think harder” < “ultrathink”**
 
 Higher levels give Claude a larger thinking budget meaning it can analyze more possibilities in detail.
+
 ![thinking](../../assets/claude-code/thinking.png)
 
 If the response from this step looks good, you can then ask Claude to create a Markdown document summarizing its plan. This way, you’ll have a clear checkpoint to return to if the later implementation doesn’t go as expected.
@@ -400,6 +418,7 @@ Keep it simple. For quick edits, don’t overthink. For hard problems, enable ex
 You can paste images directly into Claude Code. Just copy the image or drag a file into your Terminal - it’ll automatically attach to your next message.
 
 This is useful when you want to show something visual, like a small UI change or screenshot of bug or logs for debugging.
+
 ![working-with-images](../../assets/claude-code/working-with-images.png)
 
 A common workflow is to drag in a UI mockup image, ask Claude Code to implement it, and use a Playwright MCP server for automatic testing and design iteration.
@@ -412,11 +431,13 @@ There are [Built-in slash commands](https://code.claude.com/docs/en/slash-cmds#b
 - **Personal commands** are stored in `~/.claude/commands`. They’re available in every project you work on
 
 These become available through the slash commands menu when you type `/`.
+
 ![custom-slash-cmd](../../assets/claude-code/custom-slash-cmd.png)
 
 You can check these commands into git to make them available for the rest of your team.
 
 Custom slash commands can include the special keyword `$ARGUMENTS` to pass parameters from command invocation.
+
 ![arguments](../../assets/claude-code/arguments.png)
 
 So if you notice that you’re typing the same prompt again and again, that’s a good sign you should turn it into a custom command - it saves time and keeps your workflow consistent.
@@ -522,6 +543,7 @@ Claude Code offers many more features. I **highly recommend** reading the Claude
 Claude Code keeps getting new features, and the team ships updates very often.
 
 Use the `/release-notes` command or check the changelog at https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md to see what’s new.
+
 ![release-notes-cmd](../../assets/claude-code/release-notes-cmd.png)
 
 You can also follow these accounts to stay up to date with new releases and announcements:
