@@ -65,18 +65,18 @@ const posts = (await getCollection('blog')).sort(
     flex: 1;
     font-size: 1.1em;
     text-decoration: none;
-    color: rgb(var(--black));
+    color: var(--color-text-heading);
     transition: all 0.2s ease;
     overflow-wrap: break-word;
     word-wrap: break-word;
   }
 
   .article-title:hover {
-    color: var(--accent);
+    color: var(--color-link);
   }
 
   .article-date {
-    color: rgb(var(--gray));
+    color: var(--color-text-muted);
     white-space: nowrap;
     margin-left: 2em;
     font-size: 0.95em;

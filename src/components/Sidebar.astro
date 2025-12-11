@@ -1,6 +1,7 @@
 ---
 import { SITE_TITLE } from '../consts'
 import HeaderLink from './HeaderLink.astro'
+import ThemeToggle from './ThemeToggle.astro'
 ---
 
 <aside class="sidebar">
@@ -16,7 +17,10 @@ import HeaderLink from './HeaderLink.astro'
   </nav>
 
   <footer class="sidebar-footer">
-    <p>&copy; {new Date().getFullYear()} {SITE_TITLE}</p>
+    <div class="footer-content">
+      <p>&copy; {new Date().getFullYear()} {SITE_TITLE}</p>
+    </div>
+    <ThemeToggle />
   </footer>
 </aside>
 
@@ -27,14 +31,15 @@ import HeaderLink from './HeaderLink.astro'
     top: 0;
     bottom: 0;
     width: 280px;
-    background: white;
-    border-right: 1px solid rgb(var(--gray-light));
+    background: var(--color-bg);
+    border-right: 1px solid var(--color-border);
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding: 3em 2em;
     z-index: 100;
     box-sizing: border-box;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
   }
 
   .sidebar-header {
@@ -49,7 +54,7 @@ import HeaderLink from './HeaderLink.astro'
 
   .site-title a {
     text-decoration: none;
-    color: rgb(var(--black));
+    color: var(--color-text-heading);
   }
 
   .sidebar-nav {
@@ -62,12 +67,16 @@ import HeaderLink from './HeaderLink.astro'
   .sidebar-footer {
     margin-top: auto;
     padding-top: 2em;
-    border-top: 1px solid rgb(var(--gray-light));
+    border-top: 1px solid var(--color-border);
     font-size: 0.9em;
-    color: rgb(var(--gray));
+    color: var(--color-text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1em;
   }
 
-  .sidebar-footer p {
+  .footer-content p {
     margin: 0;
   }
 
@@ -92,7 +101,7 @@ import HeaderLink from './HeaderLink.astro'
       padding: 1em 1.5em;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       border-right: none;
-      border-bottom: 1px solid rgb(var(--gray-light));
+      border-bottom: 1px solid var(--color-border);
       gap: 2em;
     }
 
@@ -114,6 +123,13 @@ import HeaderLink from './HeaderLink.astro'
     }
 
     .sidebar-footer {
+      margin-left: auto;
+      margin-top: 0;
+      padding-top: 0;
+      border-top: none;
+    }
+
+    .footer-content {
       display: none;
     }
   }
