@@ -12,19 +12,35 @@ interface Props {
 const { headings } = Astro.props
 ---
 
-<nav class="toc" aria-label="Table of Contents">
-  <div class="toc-header">Contents</div>
-  <ul class="toc-list">
-    {
-      headings.map((heading) => (
-        <li class={`toc-item toc-depth-${heading.depth}`}>
-          <a href={`#${heading.slug}`} class="toc-link">
-            {heading.text}
-          </a>
-        </li>
-      ))
+<script is:inline>
+  // Runs immediately to prevent FOUC
+  (function() {
+    if (localStorage.getItem('toc-collapsed') === 'true') {
+      document.documentElement.classList.add('toc-starts-collapsed');
     }
-  </ul>
+  })();
+</script>
+
+<nav class="toc" aria-label="Table of Contents">
+  <button class="toc-toggle" aria-expanded="true" aria-controls="toc-content">
+    <span class="toc-header">Contents</span>
+    <svg class="toc-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+      <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+  <div id="toc-content" class="toc-content">
+    <ul class="toc-list">
+      {
+        headings.map((heading) => (
+          <li class={`toc-item toc-depth-${heading.depth}`}>
+            <a href={`#${heading.slug}`} class="toc-link">
+              {heading.text}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
 </nav>
 
 <style>
@@ -57,13 +73,66 @@ const { headings } = Astro.props
     }
   }
 
+  /* Toggle button */
+  .toc-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0;
+    margin-bottom: 0.75rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+  }
+
   .toc-header {
     font-weight: 700;
     color: var(--accent);
-    margin-bottom: 0.75rem;
     text-transform: uppercase;
     font-size: 0.75rem;
     letter-spacing: 0.05em;
+  }
+
+  .toc-chevron {
+    color: var(--color-text-muted);
+    transition: transform 0.25s ease;
+    flex-shrink: 0;
+  }
+
+  .toc-toggle:hover .toc-chevron {
+    color: var(--accent);
+  }
+
+  .toc-toggle[aria-expanded="false"] .toc-chevron {
+    transform: rotate(-90deg);
+  }
+
+  /* Collapsible content */
+  .toc-content {
+    display: grid;
+    grid-template-rows: 1fr;
+    transition: grid-template-rows 0.25s ease;
+  }
+
+  .toc-content > ul {
+    overflow: hidden;
+  }
+
+  .toc.collapsed .toc-content {
+    grid-template-rows: 0fr;
+  }
+
+  /* Initial collapsed state (no transition to prevent FOUC) */
+  :global(html.toc-starts-collapsed) .toc-content {
+    grid-template-rows: 0fr;
+    transition: none;
+  }
+
+  :global(html.toc-starts-collapsed) .toc-chevron {
+    transform: rotate(-90deg);
+    transition: none;
   }
 
   .toc-list {
@@ -126,6 +195,33 @@ const { headings } = Astro.props
 </style>
 
 <script>
+  const STORAGE_KEY = 'toc-collapsed'
+  const toc = document.querySelector('.toc') as HTMLElement
+  const toggleBtn = document.querySelector('.toc-toggle') as HTMLButtonElement
+
+  // Restore collapsed state and enable transitions
+  function restoreState() {
+    const isCollapsed = localStorage.getItem(STORAGE_KEY) === 'true'
+    if (isCollapsed) {
+      toc.classList.add('collapsed')
+      toggleBtn.setAttribute('aria-expanded', 'false')
+    }
+    // Remove the FOUC-prevention class and re-enable transitions
+    requestAnimationFrame(() => {
+      document.documentElement.classList.remove('toc-starts-collapsed')
+    })
+  }
+
+  // Toggle collapsed state
+  function toggleToc() {
+    const isCollapsed = toc.classList.toggle('collapsed')
+    toggleBtn.setAttribute('aria-expanded', String(!isCollapsed))
+    localStorage.setItem(STORAGE_KEY, String(isCollapsed))
+  }
+
+  toggleBtn.addEventListener('click', toggleToc)
+  restoreState()
+
   // Highlight the active heading in the TOC based on scroll position
   const headingElements = document.querySelectorAll(
     '.prose h2, .prose h3, .prose h4'
