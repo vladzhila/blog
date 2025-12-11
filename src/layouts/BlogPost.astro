@@ -31,7 +31,7 @@ const {
     }
     <div class="prose">
       <div class="post-header">
-        <h1>{title}</h1>
+        <h1 id="title">{title}</h1>
         <div class="date">
           <FormattedDate date={pubDate} />
           {
@@ -146,7 +146,7 @@ const {
     cursor: pointer;
   }
 
-  .prose :global(h1::before),
+  .prose :global(h1:not(#title)::before),
   .prose :global(h2::before),
   .prose :global(h3::before),
   .prose :global(h4::before),
@@ -161,7 +161,7 @@ const {
     font-weight: 400;
   }
 
-  .prose :global(h1:hover::before),
+  .prose :global(h1:not(#title):hover::before),
   .prose :global(h2:hover::before),
   .prose :global(h3:hover::before),
   .prose :global(h4:hover::before),
@@ -183,7 +183,13 @@ const {
         const id = heading.getAttribute('id')
         if (id) {
           const url = new URL(window.location.href)
-          url.hash = id
+
+          if (id === 'title') {
+            url.hash = ''
+          } else {
+            url.hash = id
+          }
+
           window.history.pushState({}, '', url)
 
           // Scroll to the heading smoothly
