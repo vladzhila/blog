@@ -11,7 +11,10 @@ export default defineConfig({
   integrations: [mdx(), sitemap()],
   markdown: {
     shikiConfig: {
-      theme: 'nord', // or 'nord', 'one-dark-pro', 'github-light', etc.
+      themes: {
+        light: 'catppuccin-latte',
+        dark: 'catppuccin-macchiato',
+      },
     },
     rehypePlugins: [
       [
