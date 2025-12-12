@@ -27,21 +27,18 @@ import ThemeToggle from './ThemeToggle.astro'
 <style>
   .sidebar {
     position: fixed;
-    left: calc(50% - (700px / 2) - 280px - 4rem);
+    left: calc(50% - (700px / 2) - 220px - 4rem);
     top: 0;
     bottom: 0;
-    width: 280px;
+    width: 220px;
     background: var(--color-bg);
-    border-right: 1px solid var(--color-border);
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding: 3em 2em;
     z-index: 100;
     box-sizing: border-box;
-    transition:
-      background-color 0.3s ease,
-      border-color 0.3s ease;
+    transition: background-color 0.3s ease;
   }
 
   .sidebar-header {
@@ -49,7 +46,6 @@ import ThemeToggle from './ThemeToggle.astro'
   }
 
   .avatar-link {
-    display: block;
     text-decoration: none;
   }
 
@@ -71,7 +67,6 @@ import ThemeToggle from './ThemeToggle.astro'
   .sidebar-footer {
     margin-top: auto;
     padding-top: 2em;
-    border-top: 1px solid var(--color-border);
     font-size: 0.9em;
     color: var(--color-text-muted);
     display: flex;
@@ -103,8 +98,6 @@ import ThemeToggle from './ThemeToggle.astro'
       align-items: center;
       justify-content: flex-start;
       padding: 1em 1.5em;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      border-right: none;
       border-bottom: 1px solid var(--color-border);
       gap: 2em;
     }
@@ -138,7 +131,6 @@ import ThemeToggle from './ThemeToggle.astro'
       margin-left: auto;
       margin-top: 0;
       padding-top: 0;
-      border-top: none;
     }
 
     .footer-content {
