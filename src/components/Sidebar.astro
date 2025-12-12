@@ -6,9 +6,9 @@ import ThemeToggle from './ThemeToggle.astro'
 
 <aside class="sidebar">
   <div class="sidebar-header">
-    <h2 class="site-title">
-      <a href="/">{SITE_TITLE}</a>
-    </h2>
+    <a href="/" class="avatar-link">
+      <img src="/avatar.jpg" alt={SITE_TITLE} class="avatar" />
+    </a>
   </div>
 
   <nav class="sidebar-nav">
@@ -39,22 +39,26 @@ import ThemeToggle from './ThemeToggle.astro'
     padding: 3em 2em;
     z-index: 100;
     box-sizing: border-box;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
+    transition:
+      background-color 0.3s ease,
+      border-color 0.3s ease;
   }
 
   .sidebar-header {
     margin-bottom: 3em;
   }
 
-  .site-title {
-    margin: 0;
-    font-size: 1.5em;
-    font-weight: 700;
+  .avatar-link {
+    display: block;
+    text-decoration: none;
   }
 
-  .site-title a {
-    text-decoration: none;
-    color: var(--color-text-heading);
+  .avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--color-border);
   }
 
   .sidebar-nav {
@@ -110,8 +114,9 @@ import ThemeToggle from './ThemeToggle.astro'
       margin-right: 0;
     }
 
-    .site-title {
-      font-size: 1.2em;
+    .avatar {
+      width: 36px;
+      height: 36px;
     }
 
     .sidebar-nav {
@@ -141,9 +146,9 @@ import ThemeToggle from './ThemeToggle.astro'
       gap: 1em;
     }
 
-    .site-title {
-      font-size: 1.1em;
-      white-space: nowrap;
+    .avatar {
+      width: 32px;
+      height: 32px;
     }
 
     .sidebar-nav {
@@ -158,8 +163,9 @@ import ThemeToggle from './ThemeToggle.astro'
       padding: 0.5em 0.75em;
     }
 
-    .site-title {
-      font-size: 1em;
+    .avatar {
+      width: 28px;
+      height: 28px;
     }
 
     .sidebar-nav {
