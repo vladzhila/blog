@@ -1,4 +1,5 @@
 ---
+
 ---
 
 <button
@@ -7,7 +8,18 @@
   aria-label="Toggle dark mode"
   title="Toggle dark mode"
 >
-  <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <svg
+    class="sun-icon"
+    xmlns="http://www.w3.org/2000/svg"
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
     <circle cx="12" cy="12" r="5"></circle>
     <line x1="12" y1="1" x2="12" y2="3"></line>
     <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -18,7 +30,18 @@
     <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
     <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
   </svg>
-  <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <svg
+    class="moon-icon"
+    xmlns="http://www.w3.org/2000/svg"
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
     <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
   </svg>
 </button>
@@ -29,8 +52,7 @@
     align-items: center;
     justify-content: center;
     background: transparent;
-    border: 1px solid var(--color-border);
-    border-radius: 50%;
+    border: none;
     width: 40px;
     height: 40px;
     cursor: pointer;
@@ -40,7 +62,6 @@
 
   .theme-toggle:hover {
     color: var(--color-text);
-    border-color: var(--color-text-muted);
     transform: scale(1.05);
   }
 
@@ -50,7 +71,9 @@
 
   .sun-icon,
   .moon-icon {
-    transition: opacity 0.2s ease, transform 0.3s ease;
+    transition:
+      opacity 0.2s ease,
+      transform 0.3s ease;
   }
 
   /* Light mode: show moon (to switch to dark), hide sun */
@@ -97,21 +120,21 @@
 
 <script>
   function initThemeToggle() {
-    const toggle = document.getElementById('theme-toggle');
-    if (!toggle) return;
+    const toggle = document.getElementById('theme-toggle')
+    if (!toggle) return
 
     toggle.addEventListener('click', () => {
-      const currentTheme = document.documentElement.getAttribute('data-theme');
-      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      const currentTheme = document.documentElement.getAttribute('data-theme')
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark'
 
-      document.documentElement.setAttribute('data-theme', newTheme);
-      localStorage.setItem('theme', newTheme);
-    });
+      document.documentElement.setAttribute('data-theme', newTheme)
+      localStorage.setItem('theme', newTheme)
+    })
   }
 
   // Initialize on page load
-  initThemeToggle();
+  initThemeToggle()
 
   // Re-initialize after Astro page transitions (View Transitions)
-  document.addEventListener('astro:after-swap', initThemeToggle);
+  document.addEventListener('astro:after-swap', initThemeToggle)
 </script>
