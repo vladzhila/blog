@@ -179,7 +179,7 @@ const {
   // Make headings clickable to update anchor link
   document.addEventListener('DOMContentLoaded', () => {
     const headings = document.querySelectorAll(
-      '.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6'
+      '.prose h1:not(#title), .prose h2, .prose h3, .prose h4, .prose h5, .prose h6'
     )
 
     headings.forEach((heading) => {

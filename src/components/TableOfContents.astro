@@ -14,18 +14,30 @@ const { headings } = Astro.props
 
 <script is:inline>
   // Runs immediately to prevent FOUC
-  (function() {
+  ;(function () {
     if (localStorage.getItem('toc-collapsed') === 'true') {
-      document.documentElement.classList.add('toc-starts-collapsed');
+      document.documentElement.classList.add('toc-starts-collapsed')
     }
-  })();
+  })()
 </script>
 
 <nav class="toc" aria-label="Table of Contents">
   <button class="toc-toggle" aria-expanded="true" aria-controls="toc-content">
     <span class="toc-header">Contents</span>
-    <svg class="toc-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-      <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <svg
+      class="toc-chevron"
+      width="12"
+      height="12"
+      viewBox="0 0 12 12"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M2.5 4.5L6 8L9.5 4.5"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"></path>
     </svg>
   </button>
   <div id="toc-content" class="toc-content">
@@ -48,7 +60,7 @@ const { headings } = Astro.props
     position: fixed;
     left: calc(50% + (700px / 2) + 4rem);
     top: 4rem;
-    width: 280px;
+    width: 300px;
     max-height: calc(100vh - 8rem);
     overflow-y: auto;
     padding: 1rem;
@@ -105,7 +117,7 @@ const { headings } = Astro.props
     color: var(--accent);
   }
 
-  .toc-toggle[aria-expanded="false"] .toc-chevron {
+  .toc-toggle[aria-expanded='false'] .toc-chevron {
     transform: rotate(-90deg);
   }
 
@@ -224,7 +236,7 @@ const { headings } = Astro.props
 
   // Highlight the active heading in the TOC based on scroll position
   const headingElements = document.querySelectorAll(
-    '.prose h2, .prose h3, .prose h4'
+    '.prose h1:not(#title), .prose h2, .prose h3, .prose h4'
   )
   const tocLinks = document.querySelectorAll('.toc-link')
 
@@ -239,28 +251,34 @@ const { headings } = Astro.props
   }
 
   // Find and set the active heading based on scroll position
-  // Uses the same logic as clicking: the heading at/near the top of viewport is active
+  // Heading is active when it's closest to the center of the viewport
   function updateActiveHeading() {
     if (userClickedLink) return
 
-    let activeHeading: string | null = null
+    const viewportCenter = window.innerHeight / 2
+    let closestHeading: string | null = null
+    let closestDistance = Infinity
 
     headingElements.forEach((heading) => {
       const id = heading.getAttribute('id')
       if (!id) return
 
       const rect = heading.getBoundingClientRect()
-      // Heading is active when its top has reached/passed the top of viewport
-      // (same position as when clicking a TOC link scrolls to it)
-      if (rect.top <= 100) {
-        activeHeading = id
+      // Calculate distance from heading to viewport center
+      const headingCenter = rect.top + rect.height / 2
+      const distance = Math.abs(headingCenter - viewportCenter)
+
+      // Track the heading closest to viewport center
+      if (distance < closestDistance) {
+        closestDistance = distance
+        closestHeading = id
       }
     })
 
-    if (activeHeading) {
-      setActiveLink(activeHeading)
+    if (closestHeading) {
+      setActiveLink(closestHeading)
     } else if (headingElements.length > 0) {
-      // At top of page before any heading scrolls past - activate first heading
+      // Fallback: activate first heading
       const firstId = headingElements[0].getAttribute('id')
       if (firstId) {
         setActiveLink(firstId)
