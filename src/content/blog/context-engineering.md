@@ -1,7 +1,7 @@
 ---
 title: 'Context Engineering'
 description: 'Article about Context Engineering'
-pubDate: 'Nov 21 2025'
+pubDate: 'Dec 01 2025'
 ---
 
 # Context Window

@@ -1,7 +1,7 @@
 ---
 title: 'Claude Code'
 description: 'Article about Claude Code'
-pubDate: 'Nov 20 2025'
+pubDate: 'Nov 14 2025'
 ---
 
 # Introduction
