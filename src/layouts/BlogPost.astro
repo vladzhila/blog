@@ -339,7 +339,9 @@ const {
   // Image zoom functionality
   document.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementById('image-zoom-modal')
-    const modalImage = document.getElementById('image-zoom-content')
+    const modalImage = document.getElementById(
+      'image-zoom-content'
+    ) as HTMLImageElement | null
     const backdrop = document.querySelector('.image-zoom-backdrop')
     const images = document.querySelectorAll('.prose img')
 
@@ -351,6 +353,8 @@ const {
       imageAlt: string,
       clickedImage: HTMLElement
     ) {
+      if (!modalImage) return
+
       modalImage.src = imageSrc
       modalImage.alt = imageAlt
       modal?.classList.add('active')
@@ -369,8 +373,10 @@ const {
       modal?.setAttribute('aria-hidden', 'true')
 
       // Clear image
-      modalImage.src = ''
-      modalImage.alt = ''
+      if (modalImage) {
+        modalImage.src = ''
+        modalImage.alt = ''
+      }
 
       // Restore body scrolling
       document.body.style.overflow = ''
