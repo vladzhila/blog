@@ -56,7 +56,7 @@ Primitives define what information and actions a MCP server can expose.
 
 Actions the AI app can call. Tools are executable functions provided by the server. The LLM can call them to perform real operations: file reads, API requests, searches, database queries, etc.
 
-**Example:** A GitHub MCP server exposes a tool called repos_list_open_pull_requests.
+**Example:** A GitHub MCP server exposes a tool called `repos_list_open_pull_requests`.
 
 When the user asks: “Show me all open PRs for our mobile app repo.”
 
@@ -81,7 +81,7 @@ If the user asks: “Does this project use TypeScript?”
 
 The AI app can call resources/read on /workspace/package.json, look at the "devDependencies", and then answer accurately using the real data rather than making assumptions.
 
-**Another example:** A database MCP server provides a resource called db_schema containing all table and column definitions. The LLM uses it to write correct queries without guessing column names.
+**Another example:** A database MCP server provides a resource called `db_schema` containing all table and column definitions. The LLM uses it to write correct queries without guessing column names.
 
 ### Prompts
 
@@ -119,7 +119,7 @@ The server uses that query to run the tool call.
 
 The MCP Server asks the user for more information or confirmation. If the server lacks required input or wants to avoid risky operations without confirmation, it can request user input through the client.
 
-**Example:** A filesystem MCP server offers a delete_file tool. When the LLM tries something like “Delete /Users/username/Documents/2023-report.pdf”. The server doesn’t want to blindly delete files. It sends an elicitation back to the AI app: “The server needs user confirmation: Are you sure you want to delete this file?”
+**Example:** A filesystem MCP server offers a `delete_file` tool. When the LLM tries something like “Delete /Users/username/Documents/2023-report.pdf”. The server doesn’t want to blindly delete files. It sends an elicitation back to the AI app: “The server needs user confirmation: Are you sure you want to delete this file?”
 
 The user sees a prompt in their IDE or client UI:
 

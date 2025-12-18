@@ -12,7 +12,7 @@ All commands use `bun` as the package manager:
 
 - `bun install` - Install dependencies
 - `bun dev` - Start development server at localhost:4321
-- `bun build` - Build production site to ./dist/
+- `bun run build` - Build production site to ./dist/
 - `bun preview` - Preview production build locally
 - `bun format` - Format code with Prettier
 - `bun astro check` - Type-check the project
