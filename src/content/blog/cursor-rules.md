@@ -40,7 +40,7 @@ Team-wide rules managed from the dashboard. Available on Team and Enterprise pla
 
 Agent instructions in markdown format. Simple alternative to `.cursor/rules`.
 
-> Note: The single **`.cursorrules`** (legacy) file in the project root was Cursor's original approach. It’s still supported but **will be deprecated**. Cursor Team recommends migrating to **Project Rules** or to **AGENTS.md**.
+> Note: The single `.cursorrules` (legacy) file in the project root was Cursor's original approach. It’s still supported but **will be deprecated**. Cursor Team recommends migrating to **Project Rules** or to **AGENTS.md**.
 
 ## Project rules
 
@@ -81,7 +81,7 @@ mkdir -p .cursor/rules
 
 **Option 3: Command Palette**
 
-1. Open Command Palette: `Cmd + Shift + P` (Mac) or `Ctrl + Shift + P` (Windows/Linux)
+1. Open Command Palette: **Cmd+Shift+P** (Mac) or **Ctrl+Shift+P** (Windows/Linux)
 2. Type and select **"New Cursor Rule"**
 3. Cursor generates a template `.mdc` file where you define `description`, `globs`, `alwaysApply` and instructions
 
@@ -188,19 +188,20 @@ This is how you can add **User Rules** in Cursor:
 
 Here’s a set of example **User Rules** to help spark ideas for your experiments. Feel free to add your own specific preferences. Take the time to experiment and see what leads to the most reliable instruction-following from the model.
 
-- Rules from the screenshot below for easy copy-pasting
-  ```markdown
-  - Avoid deeply nested ternaries - use if/else or early returns instead.
-  - Avoid magic numbers or strings - use named constants.
-  - When code is non-trivial, add a short comment block at the top explaining the approach.
-  - Do not edit database schema files directly; instead, create migrations in /prisma/migrations.
-  - Do not create new endpoints without documenting them in /docs/API.md.
-  - If the project uses shadcn/ui and Tailwind, do not invent new design systems.
-  - If you know a better way - speak up. Suggest best practices if current approach is outdated.
-  - Avoid barrel exports (index.ts that re-exports everything).
-  - Prefer async/await over callbacks.
-  - Use fewer comments - I don't want the whole codebase bloated with comments.
-  ```
+Rules from the screenshot below for easy copy-pasting:
+
+```markdown
+- Avoid deeply nested ternaries - use if/else or early returns instead.
+- Avoid magic numbers or strings - use named constants.
+- When code is non-trivial, add a short comment block at the top explaining the approach.
+- Do not edit database schema files directly; instead, create migrations in /prisma/migrations.
+- Do not create new endpoints without documenting them in /docs/API.md.
+- If the project uses shadcn/ui and Tailwind, do not invent new design systems.
+- If you know a better way - speak up. Suggest best practices if current approach is outdated.
+- Avoid barrel exports (index.ts that re-exports everything).
+- Prefer async/await over callbacks.
+- Use fewer comments - I don't want the whole codebase bloated with comments.
+```
 
 ![User Rules Examples](../../assets/cursor-rules/user-rules-examples.png)
 
@@ -286,8 +287,8 @@ There is no official documentation that explicitly states which file takes prior
 
 Given that both are loaded together, **avoid conflicts** by using them for different purposes:
 
-- Use **`AGENTS.md`** for high-level project instructions, setup commands, and general guidelines
-- Use **`.cursor/rules/*.mdc`** for specific, scoped rules that apply to particular file patterns or contexts
+- Use `AGENTS.md` for high-level project instructions, setup commands, and general guidelines
+- Use `.cursor/rules/*.mdc` for specific, scoped rules that apply to particular file patterns or contexts
 
 ## Rule Priority and Conflict Handling
 
@@ -303,17 +304,12 @@ This hierarchy ensures organizational standards override personal preferences.
 
 **User Rules** apply individual style preferences without compromising team standards.
 
-| Rule Type     | Scope                   | Configuration              | Priority | Enforcement                             |
-| ------------- | ----------------------- | -------------------------- | -------- | --------------------------------------- |
-| Team Rules    | Organization/Enterprise | Dashboard/Plain Text       | Highest  | Mandatory (via enforcement flag)        |
-| Project Rules | Repository/Codebase     | MDC (.mdc) or AGENTS.md    | Second   | Version-controlled and project-specific |
-| User Rules    | Global/Personal         | Cursor Settings/Plain Text | Lowest   | Personal preference only                |
-
 ## .cursorignore
 
 You can use a `.cursorignore` file in the root project directory to block access to specific files or folders. Anything listed there is excluded from indexing, Tab completions, Agent and Inline Edit actions, and @-symbol code references.
 
 **Why ignore files?**
+
 **Security:** Restrict access to API keys, credentials, and secrets. While Cursor blocks ignored files, complete protection isn't guaranteed due to LLM unpredictability.
 
 **Performance:** In large codebases or monorepos, exclude irrelevant portions for faster indexing and more accurate file discovery.
@@ -404,7 +400,7 @@ Rules help the AI understand your project the same way developers do: by knowing
 
 Cursor Rules can help transform a general AI into a more reliable assistant for your codebase. They give the model the context it normally forgets: how your project is structured, how you write code, and which workflows matter. It leads to less re-explaining, fewer repeated mistakes, more consistent output.
 
-Use **Project Rules** (in `.cursor/rules`) for codebase-specific standards and workflows. They’re version-controlled, can target files with `globs`, and keep guidance close to the code. Use **User Rules** for your personal style and habits that should apply everywhere. When you want a fast, lightweight setup, add **AGENTS.md** to state clear, high-level instructions without extra metadata.
+Use **Project Rules** (in `.cursor/rules`) for codebase-specific standards and workflows. They’re version-controlled, can target files with `globs`, and keep guidance close to the code. Use **User Rules** for your personal style and habits that should apply everywhere. When you want a fast, lightweight setup, add `AGENTS.md` to state clear, high-level instructions without extra metadata.
 
 Keep rules short, direct, written before coding starts, and updated as the project evolves. Split big ideas into small, focused files, show real examples, and avoid vague language. This structure lets the AI choose the right guidance at the right time and helps you and your team get consistent results with less effort.
 

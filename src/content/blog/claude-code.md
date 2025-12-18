@@ -37,13 +37,13 @@ There are a few recommended setup steps to optimize your Claude Code experience:
 
 ![/terminal-setup](../../assets/claude-code/terminal-setup-cmd.png)
 
-2. Use the /config command to set your Claude Code preferences. The key change is to set the default model to “opus” or “sonnet” (Claude’s smartest models) instead of “haiku” (Claude’s fastest model).
+2. Use the `/config` command to set your Claude Code preferences. The key change is to set the default model to “opus” or “sonnet” (Claude’s smartest models) instead of “haiku” (Claude’s fastest model).
 
 ![/config](../../assets/claude-code/config-cmd.png)
 
 I also suggest turning on **Auto-connect to IDE** and setting it to true. This lets Claude Code automatically access the file you’re working on or the lines you’ve selected in your IDE.
 
-![ide-integration](../../assets/claude-code/ide-integration.png)
+![IDE integration](../../assets/claude-code/ide-integration.png)
 
 If you prefer using Claude Code directly inside your IDE instead of the terminal, you can follow these setup guides:
 
@@ -55,7 +55,7 @@ If you prefer using Claude Code directly inside your IDE instead of the terminal
 
 That said, the **terminal version** still provides the richest and most flexible experience, so it’s worth starting there before switching to an IDE workflow.
 
-Use the `/install-github-app` command to install the GitHub app. After installation, you can tag **@claude** directly in any GitHub issue or pull request to mention it.
+Use the `/install-github-app` command to install the GitHub app. After installation, you can tag `@claude` directly in any GitHub issue or pull request to mention it.
 
 ![/install-github-app](../../assets/claude-code/install-github-app-cmd.png)
 
@@ -109,27 +109,27 @@ Terminal interfaces are minimal by design, which can make features harder to dis
 - **Auto-accept edits** - automatically applies changes without asking for confirmation
 - **Plan mode** - outlines a step-by-step plan before making any changes, so you can review and approve it first
 
-![edit-plan-mode](../../assets/claude-code/edit-plan-mode.png)
+![Edit/Plan mode](../../assets/claude-code/edit-plan-mode.png)
 
 `#` (Pound Sign) - Tell Claude Code to **remember** something. For example, if it's using a tool incorrectly, use `#` to provide correction, and it will learn from it and automatically update the guidance in `CLAUDE.md`.
 
-![pound-sign](../../assets/claude-code/pound-sign.png)
+![Pound sign](../../assets/claude-code/pound-sign.png)
 
 `!` **(Exclamation Mark)** - Switch to Bash mode to run a local command. The command and output go into the context window, making this ideal for long-running commands or any command you want visible to Claude Code on the next turn.
 
 For example, you can run your tests locally, see which ones fail, and then ask Claude Code to fix them. If you plan to run many commands, start with `!` to stay in shell mode. It’s like using your normal terminal - with an AI that can see and help with the results.
 
-![exclamation-mark](../../assets/claude-code/exclamation-mark.png)
+![Exclamation mark](../../assets/claude-code/exclamation-mark.png)
 
 `@` **(At Symbol)** - Mention files and folders to add them to context.
 
-![at-symbol](../../assets/claude-code/at-symbol.png)
+![At symbol](../../assets/claude-code/at-symbol.png)
 
 **Escape** - Stop what Claude Code is doing at any time. It's always safe to hit Escape - it won't corrupt the session or cause problems. Use it to interrupt file edits, then provide different guidance, or to stop a suggested edit partway through if most lines look correct but one needs changing.
 
 **Escape Twice** or use the `/rewind` (checkpoint) command to jump back in the conversation history, edit an earlier prompt, and try a different approach.
 
-![escape- ](../../assets/claude-code/escape-twice.png)
+![Escape Twice](../../assets/claude-code/escape-twice.png)
 
 **Ctrl+R** - Search through your prompt history.
 
@@ -139,7 +139,7 @@ More details here: https://code.claude.com/docs/en/interactive-mode#general-cont
 
 `?` **(Question mark)** - To see all shortcuts and experiment with them:
 
-![question-mark](../../assets/claude-code/question-mark.png)
+![Question mark](../../assets/claude-code/question-mark.png)
 
 # Resume Previous Sessions
 
@@ -170,7 +170,7 @@ MCP Tools extend Claude Code with additional tools and integrations.
 
 For example, you can use **Context7 MCP** to give Claude direct access to the latest documentation for the libraries you use. Or you can use **Atlassian MCP** to let Claude retrieve Jira tickets or Confluence pages automatically without copying and pasting anything manually into the terminal. Or **Figma MCP** to let Claude inspect design files, extract them, and implement UI components that match your actual design specs.
 
-![mcp-cmd](../../assets/claude-code/mcp-cmd.png)
+![/mcp](../../assets/claude-code/mcp-cmd.png)
 
 Popular MCP tools to use with Claude Code:
 
@@ -189,7 +189,7 @@ Use only the MCPs that are truly necessary. Remove unused ones, or keep them dis
 
 You can check your current context usage anytime with the `/context` command.
 
-![context-cmd](../../assets/claude-code/context-cmd.png)
+![/context](../../assets/claude-code/context-cmd.png)
 
 More details about “MCP” are here:
 
@@ -203,7 +203,7 @@ You can control which tools Claude is allowed to use by customizing its “allow
 
 After starting Claude Code, you can run `/permissions` command to add or remove tools from the allowlist.
 
-![permissions-cmd](../../assets/claude-code/permissions-cmd.png)
+![/permissions](../../assets/claude-code/permissions-cmd.png)
 
 Or edit configuration files manually. You can edit:
 
@@ -229,7 +229,7 @@ More details about “Claude Code settings and permissions” are here:
 
 https://code.claude.com/docs/en/settings
 
-# **Create CLAUDE.md files**
+# Create CLAUDE.md files
 
 As you work deeper with Claude Code, providing more context leads to smarter decisions. Claude Code offers a hierarchical system for managing context.
 
@@ -302,7 +302,7 @@ The most common places to put your `CLAUDE.md` file are:
 
 When you run the `/init` command, Claude automatically generates a `CLAUDE.md` file for your project. It’s a useful starting point when you already have an existing codebase - Claude Code analyzes your project and creates the initial file for you. After that, you can manually fine-tune and adjust it as needed.
 
-![init-cmd](../../assets/claude-code/init-cmd.png)
+![/init](../../assets/claude-code/init-cmd.png)
 
 More details about “Manage Claude's memory” are here:
 
@@ -343,7 +343,7 @@ Claude will then save this rule in the correct memory file you choose and apply 
 
 When writing important instructions, use phrases like “IMPORTANT” or “YOU MUST” to help Claude follow critical rules more reliably.
 
-![memorize-sign](../../assets/claude-code/memorize-sign.png)
+![Memorize sign](../../assets/claude-code/memorize-sign.png)
 
 # Manage Chat Context Usage
 
@@ -357,13 +357,13 @@ Using `/compact` helps you stay on topic without losing key points. It replaces 
 
 You can also enable **auto-compact** in your config to let Claude manage this automatically:
 
-![auto-compact-option](../../assets/claude-code/auto-compact-option.png)
+![Auto-compact option](../../assets/claude-code/auto-compact-option.png)
 
 **Important:** As I mentioned in the [**MCP Tools**](https://www.notion.so/Claude-Code-2a958a13ad50803384e2ecd8521216d6?pvs=21) section, it’s very important to keep an eye on your context usage. Many elements can quietly take up space in the context, such as the system prompt, tools, MCPs, `CLAUDE.md` files, your ongoing chat history. When there’s less free space left, the model’s performance can drop. **Use `/clear`, `/compact`, or start a new session regularly to get better results and reduce hallucinations.**
 
 You can use the `/context` command to see how much context is currently being used in your session:
 
-![context-usage](../../assets/claude-code/context-usage.png)
+![Context usage](../../assets/claude-code/context-usage.png)
 
 # Workflow Patterns
 
@@ -419,11 +419,11 @@ You can paste images directly into Claude Code. Just copy the image or drag a fi
 
 This is useful when you want to show something visual, like a small UI change or screenshot of bug or logs for debugging.
 
-![working-with-images](../../assets/claude-code/working-with-images.png)
+![Working with images](../../assets/claude-code/working-with-images.png)
 
 A common workflow is to drag in a UI mockup image, ask Claude Code to implement it, and use a Playwright MCP server for automatic testing and design iteration.
 
-## **Custom Slash Commands**
+## Custom Slash Commands
 
 There are [Built-in slash commands](https://code.claude.com/docs/en/slash-cmds#built-in-slash-cmds) like `/config`, `/context`, `/mcp` and many others. You can also create your own custom slash commands for repeated workflows and store prompt templates in Markdown files:
 
@@ -432,13 +432,13 @@ There are [Built-in slash commands](https://code.claude.com/docs/en/slash-cmds#b
 
 These become available through the slash commands menu when you type `/`.
 
-![custom-slash-cmd](../../assets/claude-code/custom-slash-cmd.png)
+![Custom slash commands](../../assets/claude-code/custom-slash-cmd.png)
 
 You can check these commands into git to make them available for the rest of your team.
 
 Custom slash commands can include the special keyword `$ARGUMENTS` to pass parameters from command invocation.
 
-![arguments](../../assets/claude-code/arguments.png)
+![Arguments](../../assets/claude-code/arguments.png)
 
 So if you notice that you’re typing the same prompt again and again, that’s a good sign you should turn it into a custom command - it saves time and keeps your workflow consistent.
 
@@ -458,7 +458,7 @@ https://code.claude.com/docs/en/slash-cmds#custom-slash-cmds
 
 ## Subagents
 
-![subagents-cmd](../../assets/claude-code/subagents-cmd.png)
+![/agents](../../assets/claude-code/subagents-cmd.png)
 
 You can create [specialized subagents](https://code.claude.com/docs/en/sub-agents) to handle different parts of a large workflow. Each subagent focuses on a single task, which helps manage context better and lets multiple processes run in parallel.
 
@@ -488,7 +488,7 @@ https://code.claude.com/docs/en/sub-agents
 
 ## Hooks
 
-![hooks-cmd](../../assets/claude-code/hooks-cmd.png)
+![/hooks](../../assets/claude-code/hooks-cmd.png)
 
 Hooks in Claude Code are custom shell commands that run automatically at certain points in its workflow. They let you customize what happens before or after Claude runs a command - giving you more control over the process.
 
@@ -519,24 +519,24 @@ Power users often run several Claude Code sessions at the same time. There are t
 
 Anthropic is improving support for parallel workflows, but these methods already let power users work on multiple tasks. Claude Code can handle any number of sessions at once without limits.
 
-# **Tips & Tricks**
+# Tips & Tricks
 
-- Use **plan mode** more often; it greatly improves complex-task success rates ([Plan Mode](https://www.notion.so/Claude-Code-2a958a13ad50803384e2ecd8521216d6?pvs=21))
-- Add a **settings.json** to your repo to pre-approve tools or block unsafe ones ([Permissions](https://www.notion.so/Claude-Code-2a958a13ad50803384e2ecd8521216d6?pvs=21))
+- Use **plan mode** more often; it greatly improves complex-task success rates
+- Add a **settings.json** to your repo to pre-approve tools or block unsafe ones
 - Avoid using “dangerous skip permissions” (YOLO mode). The flag `claude --dangerously-skip-permissions` bypasses all permission checks and lets Claude run without asking for approval. This is unsafe and can lead to risky or destructive actions, so it’s better not to use it
 - **Invite Claude to ask questions.** You can say: “We’re brainstorming - ask me questions if you’re unsure.” this makes collaboration more human-like and produces better plans
 - **Prototype first, then refine.** When you’re unsure about a feature, let Claude implement it badly on purpose*.* Seeing the mistakes clarifies what you actually want. Then clear the context and redo it properly - a faster version of “throwaway prototyping”
-- **Save knowledge in** `CLAUDE.md`**.** When something goes wrong, use `#` to record it there. This builds a simple memory system that keeps track of recurring issues, tests, and linting rules. Later, Claude can automatically refer to this information when similar problems come up again ([Memory Mode](https://www.notion.so/Claude-Code-2a958a13ad50803384e2ecd8521216d6?pvs=21))
+- **Save knowledge in** `CLAUDE.md`**.** When something goes wrong, use `#` to record it there. This builds a simple memory system that keeps track of recurring issues, tests, and linting rules. Later, Claude can automatically refer to this information when similar problems come up again
 - Avoid adding too much text into `CLAUDE.md` without checking if it actually helps the model perform better. Test and refine to find what gives the best results
-- Create **custom slash commands** for repetitive tasks like code reviews, generating commit messages, and doing detailed analysis ([Custom Slash Commands](https://www.notion.so/Claude-Code-2a958a13ad50803384e2ecd8521216d6?pvs=21))
-- Extend Claude Code with **MCPs** to give Claude only the tools that are truly necessary. Enable MCPs only when you need them to reduce context usage ([MCP Tools](https://www.notion.so/Claude-Code-2a958a13ad50803384e2ecd8521216d6?pvs=21))
+- Create **custom slash commands** for repetitive tasks like code reviews, generating commit messages, and doing detailed analysis
+- Extend Claude Code with **MCPs** to give Claude only the tools that are truly necessary. Enable MCPs only when you need them to reduce context usage
 - Use `/context` command to monitor context usage
 - `/clear` starts a fresh chat, `/compact` shrinks the current one by keeping only the key points, and you can also press Ctrl+C to end the current session and then run `claude` again to start a new chat
 - **Edit previous messages.** Press **Escape twice** or use `/rewind` command to jump back and edit your last message. To return to an earlier session, start Claude with the `claude --resume` flag to view and reopen **past chats**
-- Paste specific URLs alongside your prompts for Claude to fetch and read. To avoid permission prompts for the same domains, use `/permissions` to add domains to your allowlist
+- Paste specific URLs alongside your prompts for Claude to fetch and read. To avoid permission prompts for the same domains, use `/permissions` to add domains to your allowlist
 - **Try phase-by-phase workflow.** Start with a `REQUIREMENTS.md` that lists detailed requirements and the full stack (client, server, database, etc.) details. Outline all phases in the same document (you can use an LLM for this as well). The agent implements each phase step by step; you review, guide, do manual parts when needed, mark each phase as complete in the document, and commit after each phase. For the next phase, open a new chat with a message like: “Phase 1 has been completed and committed to the repository. We’re now ready to move forward with Phase 2 - see `@REQUIREMENTS.md` for details.”
 
-# **Stay Updated**
+# Stay Updated
 
 Claude Code offers many more features. I **highly recommend** reading the Claude Code documentation - it’s well written, nicely concise, and full of useful tips, tricks, and best practices to make your workflow more efficient: https://code.claude.com/docs.
 
@@ -544,7 +544,7 @@ Claude Code keeps getting new features, and the team ships updates very often.
 
 Use the `/release-notes` command or check the changelog at https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md to see what’s new.
 
-![release-notes-cmd](../../assets/claude-code/release-notes-cmd.png)
+![/release-notes](../../assets/claude-code/release-notes-cmd.png)
 
 You can also follow these accounts to stay up to date with new releases and announcements:
 
@@ -628,7 +628,7 @@ There are other similar tools - like **Codex**, **Gemini CLI**, or **OpenCode**.
 
 AI tools like Claude Code help engineers work faster, focus on solving complex problems, and spend less time on repetitive coding tasks. This shift lets developers think more creatively and strategically. Claude Code leads this change, constantly improving to support developers and expand what’s possible with AI-assisted programming.
 
-# **Useful Sources**
+# Useful Sources
 
 **Claude Code (official documentation):**
 

@@ -50,7 +50,7 @@ MCP client and MCP server negotiate: protocol version, supported features, avail
 
 Primitives define what information and actions a MCP server can expose.
 
-### **Server primitives**
+### Server primitives
 
 ### Tools
 
@@ -79,7 +79,7 @@ Context data the AI app can read. Resources give the LLM read-only information i
 
 If the user asks: “Does this project use TypeScript?”
 
-The AI app can call resources/read on /workspace/package.json, look at the "devDependencies", and then answer accurately using the real data rather than making assumptions.
+The AI app can call `resources/read` on `/workspace/package.json`, look at the `devDependencies`, and then answer accurately using the real data rather than making assumptions.
 
 **Another example:** A database MCP server provides a resource called `db_schema` containing all table and column definitions. The LLM uses it to write correct queries without guessing column names.
 
@@ -103,7 +103,7 @@ When the LLM needs help constructing a vector-search request, it can fetch this 
 
 The LLM uses this prompt whenever it constructs SQL queries through the server’s tools.
 
-### **Client primitives**
+### Client primitives
 
 ### Sampling
 
@@ -154,7 +154,7 @@ Below is a simple end-to-end flow showing how a MCP client interacts with a MCP 
 
 ### Initialization
 
-MCP client sends: protocol version, supported capabilities, client info. MCP server responds with its own capabilities. If everything matches, the connection is ready. After that, the MCP client sends notifications/initialized. This step ensures both sides know:
+MCP client sends: protocol version, supported capabilities, client info. MCP server responds with its own capabilities. If everything matches, the connection is ready. After that, the MCP client sends `notifications/initialized`. This step ensures both sides know:
 
 - What versions they speak.
 - What features they support.

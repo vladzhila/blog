@@ -22,7 +22,13 @@ LLMs can’t handle unlimited text. More context consumes more memory and slows 
 
 Models struggle to retrieve information buried deep inside long conversations. This is the “needle in a haystack” problem. Even models with giant limits can still fail to use that information effectively.
 
-![context-window](../../assets/context-engineering/context-window.png)
+<div class="image-with-caption">
+
+![Context Window](../../assets/context-engineering/context-window.png)
+
+<p class="image-caption">Image source: <a href="https://platform.claude.com/docs/en/build-with-claude/context-windows">Context windows</a></p>
+
+</div>
 
 # Prompt vs Context Engineering
 
@@ -30,7 +36,13 @@ Models struggle to retrieve information buried deep inside long conversations. T
 
 **Context engineering** is about selecting and managing all the information placed in the model’s context window - not just prompts, but every token the model sees.
 
-![prompt-context-engineering](../../assets/context-engineering/prompt-context-engineering.png)
+<div class="image-with-caption">
+
+![Prompt vs Context Engineering](../../assets/context-engineering/prompt-context-engineering.png)
+
+<p class="image-caption">Image source: <a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents">Effective context engineering for AI agents</a></p>
+
+</div>
 
 # Context Engineering
 
