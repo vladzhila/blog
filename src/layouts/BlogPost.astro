@@ -5,6 +5,7 @@ import type { MarkdownHeading } from 'astro'
 import SidebarLayout from './SidebarLayout.astro'
 import FormattedDate from '../components/FormattedDate.astro'
 import TableOfContents from '../components/TableOfContents.astro'
+import { SITE_TITLE } from '../consts'
 
 type Props = CollectionEntry<'blog'>['data'] & {
   headings?: MarkdownHeading[]
@@ -20,7 +21,7 @@ const {
 } = Astro.props
 ---
 
-<SidebarLayout title={title} description={description}>
+<SidebarLayout title={`${title} | ${SITE_TITLE}`} description={description}>
   <article class="blog-post">
     {
       heroImage && (
