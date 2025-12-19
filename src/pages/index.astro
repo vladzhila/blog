@@ -1,6 +1,5 @@
 ---
 import SidebarLayout from '../layouts/SidebarLayout.astro'
-import SocialLinks from '../components/SocialLinks.astro'
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts'
 ---
 
@@ -9,23 +8,29 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts'
     <h1>Vlad Zhila</h1>
 
     <p>
-      My name is Vlad, and I work as a Senior Software Engineer. My professional
-      background spans projects in healthcare, security, and web and mobile
-      systems, where I’ve been responsible for architecture, service
-      integration, performance optimization, and building scalable solutions.
+      I’m a software engineer building web, mobile, and desktop applications.
     </p>
-
     <p>
-      I have about 10 years of experience in IT and around 2 years of active
-      work with AI tools. I use them mainly for personal productivity: speeding
-      up coding, analyzing data, creating technical documentation, and exploring
-      new technologies. I became interested in AI because I wanted to increase
-      my work efficiency, and I saw how next-generation tools can change the way
-      we build software. The main AI-assistant tools I work with are Cursor,
-      Claude Code, and Codex.
+      These days, I mostly work with TypeScript, supported by AI-assisted
+      development tools.
     </p>
-
-    <SocialLinks />
+    <p>
+      You can find me on <a
+        href="https://x.com/vlad_zhila"
+        target="_blank"
+        rel="noopener noreferrer">X</a
+      >, <a
+        href="https://www.linkedin.com/in/vlad-zhila-ba3523104/"
+        target="_blank"
+        rel="noopener noreferrer">LinkedIn</a
+      >, and <a
+        href="https://instagram.com/vladzhila"
+        target="_blank"
+        rel="noopener noreferrer">Instagram</a
+      >, or reach me by email at <a href="mailto:vlzhila@gmail.com"
+        >vlzhila@gmail.com</a
+      >.
+    </p>
   </div>
 </SidebarLayout>
 
@@ -49,12 +54,6 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts'
     line-height: 1.8;
     overflow-wrap: break-word;
     word-wrap: break-word;
-  }
-
-  a {
-    color: var(--accent);
-    text-decoration: none;
-    transition: border-color 0.2s ease;
   }
 
   @media (max-width: 768px) {

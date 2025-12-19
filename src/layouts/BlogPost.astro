@@ -203,19 +203,17 @@ const {
     margin-bottom: 0;
     font-size: 0.9em;
     color: var(--color-text-muted);
-    font-style: italic;
     text-align: center;
   }
 
   .prose :global(.image-caption a) {
     color: var(--accent);
-    text-decoration: none;
-    border-bottom: 1px solid transparent;
-    transition: border-bottom-color 0.2s ease;
+    text-decoration: underline;
+    transition: color 0.2s ease;
   }
 
   .prose :global(.image-caption a:hover) {
-    border-bottom-color: var(--accent);
+    color: var(--accent-dark);
   }
 
   /* Image zoom functionality */

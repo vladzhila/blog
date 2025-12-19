@@ -6,12 +6,12 @@
 
 /* Light theme (default) */
 :root {
-  --accent: #674b7c;
-  --accent-dark: #4a3659;
-  --accent-light: #8b6a9e;
+  --accent: #766ccd;
+  --accent-dark: #665da6;
+  --accent-light: #a69eed;
   --black: 15, 18, 25;
   --gray: 96, 115, 159;
-  --gray-light: 229, 233, 240;
+  --gray-light: 238 242 254;
   --gray-dark: 34, 41, 57;
   --box-shadow:
     0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%),
@@ -64,7 +64,7 @@
   font-display: swap;
 }
 body {
-  font-family: 'Merriweather', Arial, Helvetica, sans-serif;
+  font-family: 'Merriweather', Helvetica, Arial, sans-serif;
   margin: 0;
   padding: 0;
   text-align: left;
@@ -134,6 +134,8 @@ b {
 }
 a {
   color: var(--color-link);
+  text-decoration: underline;
+  transition: color 0.2s ease;
 }
 a:hover {
   color: var(--color-link-hover);
@@ -162,7 +164,16 @@ img {
 code {
   padding: 2px 5px;
   background-color: var(--color-code-bg);
-  border-radius: 2px;
+  border-radius: 6px;
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    Liberation Mono,
+    Courier New,
+    monospace;
 }
 pre {
   padding: 1.5em;

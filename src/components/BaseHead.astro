@@ -26,6 +26,19 @@ const { title, description } = Astro.props
   })()
 </script>
 
+<!-- Open external links in new tab -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('a[href^="http"]').forEach((link) => {
+      const anchor = link as HTMLAnchorElement
+      if (!anchor.target) {
+        anchor.target = '_blank'
+        anchor.rel = 'noopener noreferrer'
+      }
+    })
+  })
+</script>
+
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
