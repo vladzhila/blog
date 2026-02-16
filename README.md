@@ -1,6 +1,6 @@
 # Vlad's Blog
 
-A personal blog about Claude Code, context engineering, Cursor rules, and MCP.
+A personal blog.
 
 Live at [vladzhila.pages.dev](https://vladzhila.pages.dev)
 
@@ -35,11 +35,11 @@ Blog posts live in `src/content/blog/` as Markdown or MDX files. The content sch
 
 All commands are run from the root of the project:
 
-| Command              | Action                                       |
-| :------------------- | :------------------------------------------- |
-| `bun install`        | Install dependencies                         |
-| `bun dev`            | Start dev server at `localhost:4321`          |
-| `bun run build`      | Build production site to `./dist/`            |
-| `bun preview`        | Preview production build locally              |
-| `bun format`         | Format code with Prettier                     |
-| `bun astro check`    | Type-check the project                        |
+| Command           | Action                               |
+| :---------------- | :----------------------------------- |
+| `bun install`     | Install dependencies                 |
+| `bun dev`         | Start dev server at `localhost:4321` |
+| `bun run build`   | Build production site to `./dist/`   |
+| `bun preview`     | Preview production build locally     |
+| `bun format`      | Format code with Prettier            |
+| `bun astro check` | Type-check the project               |

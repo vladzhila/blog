@@ -4,11 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is an Astro-based blog built from the Astro blog template. It supports Markdown and MDX content with RSS feed generation, sitemap, and SEO optimization.
+Personal blog at [vladzhila.pages.dev](https://vladzhila.pages.dev), built with Astro 5 and deployed on Cloudflare Pages. Uses bun as the package manager.
 
 ## Development Commands
-
-All commands use `bun` as the package manager:
 
 - `bun install` - Install dependencies
 - `bun dev` - Start development server at localhost:4321
@@ -17,40 +15,36 @@ All commands use `bun` as the package manager:
 - `bun format` - Format code with Prettier
 - `bun astro check` - Type-check the project
 
-**IMPORTANT:** Do not run `bun dev` or start the development server automatically. The user will test manually.
+**Do not run `bun dev` automatically.** The user will test manually.
 
 ## Architecture
 
-### Content Collections
+### Content & Routing
 
-The blog uses Astro's Content Collections API for type-safe content management:
+Blog posts live in `src/content/blog/` as Markdown/MDX files. Schema in `src/content.config.ts` requires `title`, `description`, `pubDate`; optional `updatedDate`, `heroImage`. Access via `getCollection('blog')` from `astro:content`.
 
-- Blog posts are defined in `src/content/blog/` as Markdown or MDX files
-- Content schema is defined in `src/content.config.ts` with zod validation
-- Required frontmatter fields: `title`, `description`, `pubDate`
-- Optional fields: `updatedDate`, `heroImage`
-- Access posts via `getCollection('blog')` from `astro:content`
+Routes use the `/writing/` URL prefix, not `/blog/`:
+- `src/pages/writing/[...slug].astro` - Individual posts (uses `getStaticPaths()`)
+- `src/pages/writing.astro` - Post listing page
+- `src/pages/index.astro` - About/landing page
+- `src/pages/rss.xml.js` - RSS feed
 
-### Routing & Pages
+### Layout System
 
-- `src/pages/blog/[...slug].astro` - Dynamic route for individual blog posts using `getStaticPaths()`
-- `src/pages/blog/index.astro` - Blog listing page
-- `src/pages/rss.xml.js` - RSS feed generation endpoint
-- All pages use file-based routing
+Two layouts, both in `src/layouts/`:
+- **SidebarLayout** - Base layout used by all pages. Renders `<BaseHead>`, the sidebar nav, and `<main>` slot.
+- **BlogPost** - Wraps SidebarLayout. Adds post header (title, date), table of contents, clickable heading anchors, and image zoom modal.
 
-### Layouts & Components
+### Theme System
 
-- `src/layouts/BlogPost.astro` - Main blog post layout that wraps individual posts
-- Layouts receive `CollectionEntry<'blog'>['data']` as props
-- Components are standard Astro components in `src/components/`
+Dark/light mode via `data-theme` attribute on `<html>`. Theme is initialized inline in `BaseHead.astro` before render (prevents FOUC), respects `localStorage` then `prefers-color-scheme`. CSS variables in `src/styles/global.css` define both palettes. Shiki code blocks use Catppuccin themes (Latte for light, Macchiato for dark) with manual CSS overrides to follow the `data-theme` toggle rather than Shiki's default `prefers-color-scheme`.
 
-### Global Configuration
+### Key Configuration
 
-- `src/consts.ts` - Site-wide constants (`SITE_TITLE`, `SITE_DESCRIPTION`)
-- `astro.config.mjs` - Astro configuration including site URL, integrations (MDX, Sitemap), and markdown settings (using Nord theme for syntax highlighting)
+- `src/consts.ts` - `SITE_TITLE`, `SITE_DESCRIPTION`
+- `astro.config.mjs` - Site URL, MDX + Sitemap integrations, Catppuccin syntax highlighting, `rehype-external-links` (opens external links in new tabs)
+- `.prettierrc` - No semicolons, single quotes, trailing commas (es5), 2-space tabs
 
-### Styling
+### Fonts
 
-- Uses minimal custom CSS with CSS variables
-- Global styles in `src/styles/global.css`
-- Component-scoped styles within .astro files
+Merriweather (regular + bold) loaded from `/public/fonts/` as `.woff`, preloaded in `BaseHead.astro`.
